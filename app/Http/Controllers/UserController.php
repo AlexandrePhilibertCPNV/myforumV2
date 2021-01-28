@@ -16,8 +16,11 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        $admin_role = Role::where('slug', 'ADMI')->first();
-        $admin_users = User::where('role_id', $admin_role->id);
+
+        // Create a sub collection containing only the admin users
+        $admin_users = $users->filter(function ($user) {
+            return $user->is_admin;
+        });
 
         return view('users.index', compact('users', 'admin_users'));
     }

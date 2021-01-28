@@ -74,7 +74,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $user = User::find($id);
+        $role = Role::where('slug', $request->input('role'))->first();
+
+        $user->role_id = $role->id;
+        $user->save();
+
+        return redirect(route('users.index'))->with("message", "L'utilisateur à maintenat le role $role->name");
     }
 
     /**

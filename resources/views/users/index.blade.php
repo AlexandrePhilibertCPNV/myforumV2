@@ -22,7 +22,20 @@
                     <td>{{ $user->last_name }}</td>
                     <td>{{ $user->first_name }}</td>
                     <td>{{ $user->role->name }}</td>
-                    <td></td>
+                    @if ($admin_users->count() < 5)
+                        <td class="text-right text-nowrap">
+                            <form action="{{ route('users.update',$user->id)}}" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <input name="role" value="{{ $user->role->slug == 'ADMI' ? 'STUD': 'ADMI' }}" hidden />
+                                @if ($user->role->slug == 'ADMI')
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Destituer" />
+                                @else
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Nommer admin" />
+                                @endif
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @empty
                 <div>Aucun n'utilisateur n'existe</div>

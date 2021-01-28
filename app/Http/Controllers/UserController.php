@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = User::find($id);
         $role = Role::where('slug', $request->input('role'))->first();
 
-        $user->role_id = $role->id;
+        $user->role()->associate($role);
         $user->save();
 
         return redirect(route('users.index'))->with("message", "L'utilisateur à maintenant le role $role->name");

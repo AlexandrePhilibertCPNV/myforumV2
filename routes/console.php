@@ -38,7 +38,7 @@ Artisan::command('make:adminuser ${id}', function ($id) {
         return;
     }
 
-    $user->role_id = $admin_role->id;
+    $user->role()->associate($admin_role);
     $user->save();
 
     $this->info("$user->pseudo est admin");

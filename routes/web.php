@@ -8,6 +8,7 @@ use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function(){
     Route::Resource('states',StateController::class);
     Route::Resource('themes',ThemeController::class);
     Route::Resource('topics',TopicController::class);
+    Route::Resource('users',UserController::class);
 
     Route::get('/dashboard', function () {
         return view('dashboard');

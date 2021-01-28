@@ -10,9 +10,7 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Role</th>
-                @if ($admin_users->count() < 5)
-                    <th scope="col">Gestion</th>
-                @endif
+                <th scope="col" class="text-right">Gestion</th>
             </tr>
         </thead>
         <tbody>
@@ -22,22 +20,20 @@
                     <td>{{ $user->last_name }}</td>
                     <td>{{ $user->first_name }}</td>
                     <td>{{ $user->role->name }}</td>
-                    @if ($admin_users->count() < 5)
-                        <td class="text-right text-nowrap">
-                            @if (Auth::user()->pseudo != $user->pseudo)
-                                <form action="{{ route('users.update',$user->id)}}" method="POST">
-                                    @method('PUT')
-                                    @csrf
-                                    <input name="role" value="{{ $user->role->slug == 'ADMI' ? 'STUD': 'ADMI' }}" hidden />
-                                    @if ($user->role->slug == 'ADMI')
-                                        <input type="submit" class="btn btn-primary btn-sm" value="Destituer" />
-                                    @else
-                                        <input type="submit" class="btn btn-primary btn-sm" value="Nommer admin" />
-                                    @endif
-                                </form>
-                            @endif
-                        </td>
-                    @endif
+                    <td class="text-right text-nowrap">
+                        @if (Auth::user()->pseudo != $user->pseudo)
+                            <form action="{{ route('users.update', $user->id)}}" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <input name="role" value="{{ $user->is_admin ? 'STUD': 'ADMI' }}" hidden />
+                                @if ($user->is_admin)
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Destituer" />
+                                @elseif ($admin_users->count() <= 5)
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Nommer admin" />
+                                @endif
+                            </form>
+                        @endif
+                    </td>
                 </tr>
             @empty
                 <div>Aucun n'utilisateur n'existe</div>

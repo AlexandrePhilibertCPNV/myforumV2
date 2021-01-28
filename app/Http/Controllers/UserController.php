@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,6 +16,11 @@ class UserController extends Controller
      */
     public function index()
     {
+        // TODO: Refactor into middleware
+        if(!Auth::user()->is_admin) {
+            return redirect('/')->with("message", "Accès interdit");
+        }
+
         $users = User::all();
 
         // Create a sub collection containing only the admin users
@@ -77,6 +83,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // TODO: Refactor into middleware
+        if(!Auth::user()->is_admin) {
+            return redirect('/')->with("message", "Opération interdite");
+        }
+
         $user = User::find($id);
         $role = Role::where('slug', $request->input('role'))->first();
 

@@ -94,7 +94,7 @@ class UserController extends Controller
         $user->role()->associate($role);
         $user->save();
 
-        return redirect(route('users.index'))->with("message", "L'utilisateur à maintenant le role $role->name");
+        return redirect(route('users.index'))->with("message", "L'utilisateur a maintenant le role $role->name");
     }
 
     /**

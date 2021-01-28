@@ -80,7 +80,7 @@ class UserController extends Controller
         $user->role_id = $role->id;
         $user->save();
 
-        return redirect(route('users.index'))->with("message", "L'utilisateur à maintenat le role $role->name");
+        return redirect(route('users.index'))->with("message", "L'utilisateur à maintenant le role $role->name");
     }
 
     /**

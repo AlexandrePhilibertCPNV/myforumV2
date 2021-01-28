@@ -27,7 +27,9 @@
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Gestion des utilisateurs</a></li>
+                    @if (Auth::user() && Auth::user()->is_admin)
+                        <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Gestion des utilisateurs</a></li>
+                    @endif
                     <li class="nav-item"><a class="nav-link" href="{{ route('themes.index') }}">Gestion des thèmes</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('references.index') }}">Gestion des références</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('roles.index') }}">Gestion des rôles</a></li>

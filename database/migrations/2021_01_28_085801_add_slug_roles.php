@@ -14,7 +14,7 @@ class AddSlugRoles extends Migration
     public function up()
     {
         Schema::table('roles', function(Blueprint $table) {
-            $table->string('slug', 255);
+            $table->string('slug', 4);
         });
     }
 

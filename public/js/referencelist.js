@@ -114,7 +114,7 @@ $("tr td").on("mouseleave", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Andi.SANTOS-OLIVEIRA\Desktop\Projet_Cours\Gits\myforumV2\resources\views\references\referencelist.js */"./resources/views/references/referencelist.js");
+module.exports = __webpack_require__(/*! /home/alexandre/Documents/projects/myforumV2/resources/views/references/referencelist.js */"./resources/views/references/referencelist.js");
 
 
 /***/ })

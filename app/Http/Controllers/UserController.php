@@ -15,7 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        // 
+        $users = User::all();
+        $admin_role = Role::where('slug', 'ADMI')->first();
+        $admin_users = User::where('role_id', $admin_role->id);
+
+        return view('users.index', compact('users', 'admin_users'));
     }
 
     /**
